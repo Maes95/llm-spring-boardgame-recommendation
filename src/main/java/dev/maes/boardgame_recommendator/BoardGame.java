@@ -12,7 +12,7 @@ import jakarta.persistence.Column;
 public class BoardGame {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     @Column(nullable = false)
@@ -94,13 +94,13 @@ public class BoardGame {
     
     @Override
     public String toString() {
-        return "BoardGame{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", precio=" + precio +
-                ", categoria='" + categoria + '\'' +
-                ", editorial='" + editorial + '\'' +
-                '}';
+        return String.format(
+                "- %s (Editorial: %s, Categoría: %s, Precio: %.2f€): %s\n",
+                this.getTitulo(),
+                this.getEditorial(),
+                this.getCategoria(),
+                this.getPrecio(),
+                this.getDescripcion()
+            );
     }
 }
